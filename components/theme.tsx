@@ -24,5 +24,14 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTypography: {
+      defaultProps: {
+        color: "secondary",
+        style: {
+          fontSize: "50px",
+          marginBottom: "20px",
+        },
+      },
+    },
   },
 });
