@@ -5,6 +5,7 @@ import { Button, Grid, TextField, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
 
 const defaultFormData = {
   firstName: "",
@@ -25,6 +26,17 @@ const Registration: NextPage = () => {
     setFormData(defaultFormData);
   };
 
+  const handleRegister = (formData: any) => {
+    axios
+      .post("https://localhost:7004/Auth/register", formData)
+      .then((result) => {
+        console.log("result:", result);
+      })
+      .catch((e) => {
+        console.log("error:", e);
+      });
+  };
+
   console.log(formData);
 
   return (
@@ -35,7 +47,7 @@ const Registration: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxWidth="md">
-        {/* <Typography>Register</Typography> */}
+        <Typography>Register</Typography>
         <Grid container xs={12} spacing={2}>
           <Grid item xs={6}>
             <TextField
@@ -77,7 +89,11 @@ const Registration: NextPage = () => {
             />
           </Grid>
           <Grid item xs={6}>
-            <Button variant="contained" fullWidth>
+            <Button
+              onClick={() => handleRegister(formData)}
+              variant="contained"
+              fullWidth
+            >
               Register
             </Button>
           </Grid>
